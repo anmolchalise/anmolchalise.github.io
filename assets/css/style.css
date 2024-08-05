@@ -231,7 +231,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 992px) {
@@ -252,7 +252,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero h1 {
   margin: 0;
-  font-size: 68px;
   font-weight: 700;
   color: var(--secondary-color);
 }
@@ -272,7 +271,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero .social-links {
   margin-top: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 #hero .social-links a {
