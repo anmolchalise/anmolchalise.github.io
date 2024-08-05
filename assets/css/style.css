@@ -846,3 +846,39 @@ section {
 .contact .php-email-form button[type="submit"]:hover {
   background: var(--hover-color);
 }
+
+/* Base styles for the container and social links */
+.container {
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+  /* Styles for larger screens (laptop or bigger) */
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+  }
+
+  .container h1,
+  .container p {
+    margin-left: 20px;
+  }
+
+  .social-links {
+    justify-content: flex-start;
+  }
+}
