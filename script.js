@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const titles = ["Product Consultant", "Product Management", "Tech Support", "Product Innovation"];
+    const titles = ["Product Head", "Product Consultant", "Tech Support"];
     let index = 0;
     const titleElement = document.getElementById("changing-title");
     
@@ -17,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check for saved theme preference in localStorage
     if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
+        document.body.classList.remove("day-mode");
         themeToggleButton.textContent = "☀️"; // Switch button to sun icon
     } else {
         document.body.classList.add("day-mode");
+        document.body.classList.remove("dark-mode");
         themeToggleButton.textContent = "🌙"; // Switch button to moon icon
     }
 
