@@ -14,17 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Dark Mode / Day Mode Toggle
     const themeToggleButton = document.getElementById("theme-toggle");
 
-    // Check for saved theme preference in localStorage
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-        document.body.classList.remove("day-mode");
-        themeToggleButton.textContent = "☀️"; // Switch button to sun icon
-    } else {
-        document.body.classList.add("day-mode");
-        document.body.classList.remove("dark-mode");
-        themeToggleButton.textContent = "🌙"; // Switch button to moon icon
-    }
+    // Set default theme to dark mode
+    document.body.classList.add("dark-mode");
+    document.body.classList.remove("day-mode");
+    themeToggleButton.textContent = "☀️"; // Switch button to sun icon
 
+    // Listen for theme toggle button click
     themeToggleButton.addEventListener("click", function() {
         // Toggle theme
         document.body.classList.toggle("dark-mode");
