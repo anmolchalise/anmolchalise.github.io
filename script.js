@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const titles = ["Product Head", "Product Innovation", "Product Strategy & R&D"];
+    const titles = ["Product Innovation", "Product Research & Development", "Product Strategy"];
     let index = 0;
     const titleElement = document.getElementById("changing-title");
     
