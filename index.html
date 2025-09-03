@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anmol Chalise – Product Head</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="image/anmicon.png">
     <style>
         /* Resetting margin, padding, and box-sizing */
         * {
@@ -28,282 +27,450 @@
 
         /* Basic styling for body */
         body {
-            width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
+            padding: 20px;
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            background-color: #1a1a2e;
+            color: #fff;
         }
 
         /* Day Mode */
         body.day-mode {
+            background-color: #f0f2f5;
             color: #333;
-        }
-
-        /* Dark Mode */
-        body.dark-mode {
-            color: #fff;
         }
 
         /* Styling for the container */
         .container {
             width: 100%;
-            max-width: 1200px;
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            padding: 40px 30px;
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             z-index: 1;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .container {
-            background: rgba(51, 51, 51, 0.9);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        body.day-mode .container {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* Image Styling */
-        img {
+        .profile-img {
             width: 180px;
             height: 180px;
             border-radius: 50%;
-            margin-bottom: 30px;
-            border: 5px solid #ddd;
+            margin-bottom: 25px;
+            border: 5px solid #4e54c8;
+            object-fit: cover;
+            position: relative;
+            box-shadow: 0 0 25px rgba(78, 84, 200, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(78, 84, 200, 0.7);
+        }
+
+        body.day-mode .profile-img {
+            border-color: #0073b1;
+            box-shadow: 0 0 25px rgba(0, 115, 177, 0.4);
+        }
+
+        body.day-mode .profile-img:hover {
+            box-shadow: 0 0 35px rgba(0, 115, 177, 0.6);
         }
 
         /* Heading Styling */
         h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 700;
-            color: #333;
-        }
-
-        body.dark-mode h1 {
             color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Changing title styling */
+        body.day-mode h1 {
+            color: #222;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enhanced changing title styling */
+        .title-container {
+            position: relative;
+            height: 60px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            width: 100%;
+        }
+
         .changing-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 600;
-            color: #0073b1;
+            color: #8a2be2;
             display: block;
-            margin-top: 15px;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+            text-shadow: 0 0 15px rgba(78, 43, 76, 0.5);
+        }
+
+        .changing-title.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body.day-mode .changing-title {
+            color: #0073b1;
+            text-shadow: 0 0 15px rgba(0, 115, 177, 0.4);
         }
 
         /* Paragraph Styling */
         p {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #555;
-            line-height: 1.8;
+            font-size: 18px;
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 90%;
         }
 
-        body.dark-mode p {
-            color: #ddd;
+        body.day-mode p {
+            color: #555;
         }
 
         /* Social Media Links */
         .social-links {
-            margin-top: 35px;
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
 
         .social-links a {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 70px;
-            height: 70px;
-            background: none;
+            width: 60px;
+            height: 60px;
             color: #fff;
             border-radius: 50%;
-            transition: background 0.3s ease-in-out, transform 0.2s;
+            transition: all 0.3s ease;
             text-decoration: none;
-            font-size: 32px;
-            font-weight: bold;
-            border: 2px solid transparent;
+            font-size: 24px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Social Media Original Color Scheme */
-        .social-links .facebook {
-            background-color: #1877f2;
-        }
-
-        .social-links .instagram {
-            background-color: #e4405f;
-        }
-
-        .social-links .linkedin {
-            background-color: #0077b5;
-        }
-
-        .social-links .website {
-            background-color: #25d366;
-        }
-
-        /* Hover Effect */
-        .social-links a:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-            transform: scale(1.1);
-        }
-
-        /* Chat Bot Styling */
-        .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            z-index: 1000;
+        .social-links a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #4e54c8, #8a2be2);
+            border-radius: 50%;
+            z-index: -1;
             transition: all 0.3s ease;
         }
 
-        .chat-header {
-            background: #0073b1;
+        body.day-mode .social-links a:before {
+            background: linear-gradient(45deg, #0073b1, #00a0e9);
+        }
+
+        /* Social Media Hover Effects */
+        .social-links .facebook:hover:before {
+            background: #1877f2;
+            transform: scale(1.1);
+        }
+
+        .social-links .instagram:hover:before {
+            background: #e4405f;
+            transform: scale(1.1);
+        }
+
+        .social-links .linkedin:hover:before {
+            background: #0077b5;
+            transform: scale(1.1);
+        }
+
+        .social-links .website:hover:before {
+            background: #25d366;
+            transform: scale(1.1);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chat Bot Styling - Icon Only Initially */
+        .chat-icon {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #4e54c8, #8a2be2);
             color: white;
-            padding: 15px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        body.day-mode .chat-icon {
+            background: linear-gradient(45deg, #0073b1, #00a0e9);
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .chat-icon i {
+            font-size: 28px;
+        }
+
+        .chat-container {
+            position: fixed;
+            bottom: 110px;
+            right: 25px;
+            width: 350px;
+            height: 500px;
+            z-index: 1000;
+            background: rgba(35, 35, 55, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.day-mode .chat-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-open .chat-container {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: linear-gradient(to right, #4e54c8, #8a2be2);
+            color: white;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
-        .chat-body {
-            height: 0;
-            overflow: hidden;
-            transition: height 0.3s ease;
-            background: white;
-            border: 1px solid #ddd;
+        body.day-mode .chat-header {
+            background: linear-gradient(to right, #0073b1, #00a0e9);
         }
 
-        body.dark-mode .chat-body {
-            background: #444;
-            border-color: #666;
+        .chat-close {
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.3s ease;
         }
 
-        .chat-open .chat-body {
-            height: 400px;
-            display: flex;
-            flex-direction: column;
+        .chat-close:hover {
+            transform: rotate(90deg);
         }
 
         .chat-messages {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .message {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px 18px;
+            border-radius: 18px;
             max-width: 80%;
             word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .bot-message {
-            background: #f1f1f1;
+            background: rgba(78, 84, 200, 0.2);
             align-self: flex-start;
             text-align: left;
+            border-bottom-left-radius: 5px;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .bot-message {
-            background: #555;
-            color: white;
+        body.day-mode .bot-message {
+            background: rgba(0, 115, 177, 0.15);
+            color: #333;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .user-message {
-            background: #0073b1;
+            background: linear-gradient(to right, #4e54c8, #8a2be2);
             color: white;
             align-self: flex-end;
             margin-left: auto;
             text-align: right;
+            border-bottom-right-radius: 5px;
+        }
+
+        body.day-mode .user-message {
+            background: linear-gradient(to right, #0073b1, #00a0e9);
         }
 
         .chat-input {
             display: flex;
-            padding: 10px;
-            border-top: 1px solid #ddd;
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 30, 40, 0.8);
         }
 
-        body.dark-mode .chat-input {
-            border-top-color: #666;
+        body.day-mode .chat-input {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(245, 245, 245, 0.9);
         }
 
         .chat-input input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
             margin-right: 10px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 15px;
         }
 
-        body.dark-mode .chat-input input {
-            background: #555;
-            color: white;
-            border-color: #666;
+        body.day-mode .chat-input input {
+            background: rgba(0, 0, 0, 0.07);
+            color: #333;
+        }
+
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        body.day-mode .chat-input input::placeholder {
+            color: rgba(0, 0, 0, 0.4);
         }
 
         .chat-input button {
-            background: #0073b1;
+            background: linear-gradient(45deg, #4e54c8, #8a2be2);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        body.day-mode .chat-input button {
+            background: linear-gradient(45deg, #0073b1, #00a0e9);
+        }
+
+        .chat-input button:hover {
+            transform: rotate(15deg) scale(1.05);
         }
 
         /* Theme Toggle Button Styling */
         .theme-toggle-btn {
-            background-color: #f1f1f1;
-            color: #333;
-            padding: 10px;
+            background: linear-gradient(45deg, #4e54c8, #8a2be2);
+            color: #fff;
+            width: 60px;
+            height: 60px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 24px;
-            transition: background-color 0.3s ease;
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 25px;
+            right: 25px;
             z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        body.dark-mode .theme-toggle-btn {
-            background-color: #444;
-            color: #fff;
+        body.day-mode .theme-toggle-btn {
+            background: linear-gradient(45deg, #0073b1, #00a0e9);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: rotate(30deg) scale(1.1);
         }
 
         /* Typing indicator */
         .typing-indicator {
             display: none;
-            padding: 10px;
-            background: #f1f1f1;
-            border-radius: 10px;
+            padding: 15px;
+            background: rgba(78, 84, 200, 0.2);
+            border-radius: 18px;
             align-self: flex-start;
             margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        body.dark-mode .typing-indicator {
-            background: #555;
+        body.day-mode .typing-indicator {
+            background: rgba(0, 115, 177, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .typing-indicator span {
-            height: 8px;
-            width: 8px;
+            height: 10px;
+            width: 10px;
             float: left;
-            margin: 0 1px;
+            margin: 0 3px;
             background-color: #9E9EA1;
             display: block;
             border-radius: 50%;
@@ -333,24 +500,103 @@
             }
         }
 
-        /* Media Queries for Mobile */
+        /* Overlay for closing chat on mobile */
+        .chat-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 999;
+            display: none;
+        }
+
+        /* Media Queries for Responsiveness */
         @media only screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
             .container {
-                max-width: 100%;
-                width: 100%;
+                padding: 30px 20px;
+                max-width: 90%;
+                border-radius: 15px;
             }
 
-            img {
-                width: 120px;
-                height: 120px;
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .title-container {
+                height: 50px;
+            }
+
+            .changing-title {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .social-links a {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+            
+            .chat-container {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+                height: 400px;
+            }
+            
+            .chat-icon {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chat-icon i {
+                font-size: 24px;
+            }
+            
+            .theme-toggle-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 20px;
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 25px 15px;
+                max-width: 100%;
+                border-radius: 12px;
+            }
+
+            .profile-img {
+                width: 130px;
+                height: 130px;
             }
 
             h1 {
                 font-size: 28px;
+            }
+
+            .title-container {
+                height: 45px;
+                margin-bottom: 20px;
             }
 
             .changing-title {
@@ -359,50 +605,37 @@
 
             p {
                 font-size: 14px;
-                margin-top: 10px;
+                line-height: 1.6;
+                max-width: 95%;
             }
 
             .social-links {
-                margin-top: 25px;
                 gap: 15px;
             }
 
             .social-links a {
                 width: 50px;
                 height: 50px;
-                font-size: 24px;
+                font-size: 20px;
             }
-
-            .chat-container {
-                width: 300px;
-                right: 10px;
-                bottom: 10px;
+            
+            .chat-icon {
+                width: 55px;
+                height: 55px;
+                bottom: 15px;
+                right: 15px;
             }
-        }
-
-        /* Extra Small Screen Adjustments */
-        @media only screen and (max-width: 480px) {
-            h1 {
-                font-size: 24px;
+            
+            .chat-icon i {
+                font-size: 22px;
             }
-
-            .changing-title {
-                font-size: 16px;
-            }
-
-            p {
-                font-size: 12px;
-            }
-
-            .social-links a {
-                width: 40px;
-                height: 40px;
+            
+            .theme-toggle-btn {
+                width: 50px;
+                height: 50px;
                 font-size: 18px;
-            }
-
-            .chat-container {
-                width: calc(100% - 20px);
-                right: 10px;
+                top: 15px;
+                right: 15px;
             }
         }
     </style>
@@ -411,10 +644,17 @@
     <!-- Tech Background Canvas -->
     <canvas id="tech-bg"></canvas>
     
+    <!-- Overlay for closing chat on mobile -->
+    <div class="chat-overlay" id="chat-overlay"></div>
+    
     <div class="container">
-        <img src="image/anm.jpeg" alt="Anmol Chalise">
+        <img src="image/anm.jpeg" alt="Anmol Chalise" class="profile-img">
         <h1>Anmol Chalise</h1>
-        <span id="changing-title" class="changing-title">Product Consultant</span>
+        <div class="title-container">
+            <span id="changing-title-1" class="changing-title">Product Consultant</span>
+            <span id="changing-title-2" class="changing-title">Product Research & Development</span>
+            <span id="changing-title-3" class="changing-title">Product Innovation</span>
+        </div>
         <p>With over a decade of experience in Computer Science and Information Technology, I am a seasoned Product Head who combines technical expertise with strong leadership to drive innovation across B2B, B2C, and B2G markets. Passionate about optimizing processes and delivering scalable solutions.</p>
         <div class="social-links">
             <a href="https://www.facebook.com/anmolchalise" target="_blank" class="facebook" title="Facebook">
@@ -432,37 +672,42 @@
         </div>
     </div>
 
-    <!-- Chat Bot -->
+    <!-- Chat Bot Icon -->
+    <div class="chat-icon" id="chat-icon">
+        <i class="fas fa-comment"></i>
+    </div>
+
+    <!-- Chat Bot Container -->
     <div class="chat-container">
-        <div class="chat-header" id="chat-toggle">
+        <div class="chat-header">
             <span>Ask me about Anmol</span>
-            <i class="fas fa-comment"></i>
+            <div class="chat-close" id="chat-close">
+                <i class="fas fa-times"></i>
+            </div>
         </div>
-        <div class="chat-body" id="chat-body">
-            <div class="chat-messages" id="chat-messages">
-                <div class="message bot-message">
-                    Hi there! I'm here to tell you about Anmol Chalise. You can ask me things like:<br>
-                    - "What's your name?"<br>
-                    - "Where do you work?"<br>
-                    - "What are your skills?"<br>
-                    - "Tell me about your experience"<br>
-                    - "How can I contact you?"
-                </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+                Hi there! I'm here to tell you about Anmol Chalise. You can ask me things like:<br>
+                - "What's your name?"<br>
+                - "Where do you work?"<br>
+                - "What are your skills?"<br>
+                - "Tell me about your experience"<br>
+                - "How can I contact you?"
             </div>
-            <div class="typing-indicator" id="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Type your question...">
-                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your question...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
     <!-- Button for theme toggle -->
-    <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
+    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-sun"></i></button>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -514,7 +759,7 @@
             
             function drawTechBackground() {
                 // Clear canvas with a slight transparency for trail effect
-                ctx.fillStyle = document.body.classList.contains('dark-mode') ? 'rgba(25, 25, 35, 0.1)' : 'rgba(240, 240, 245, 0.1)';
+                ctx.fillStyle = document.body.classList.contains('day-mode') ? 'rgba(240, 240, 245, 0.1)' : 'rgba(25, 25, 35, 0.1)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
                 // Update and draw nodes
@@ -529,7 +774,7 @@
                     // Draw node
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = document.body.classList.contains('dark-mode') ? 'rgba(0, 115, 177, 0.7)' : 'rgba(0, 115, 177, 0.5)';
+                    ctx.fillStyle = document.body.classList.contains('day-mode') ? 'rgba(0, 115, 177, 0.5)' : 'rgba(0, 115, 177, 0.7)';
                     ctx.fill();
                 });
                 
@@ -549,9 +794,9 @@
                     ctx.beginPath();
                     ctx.moveTo(fromNode.x, fromNode.y);
                     ctx.lineTo(toNode.x, toNode.y);
-                    ctx.strokeStyle = document.body.classList.contains('dark-mode') ? 
-                                     `rgba(100, 200, 255, ${conn.opacity * 0.5})` : 
-                                     `rgba(0, 115, 177, ${conn.opacity * 0.3})`;
+                    ctx.strokeStyle = document.body.classList.contains('day-mode') ? 
+                                     `rgba(0, 115, 177, ${conn.opacity * 0.3})` : 
+                                     `rgba(100, 200, 255, ${conn.opacity * 0.5})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 });
@@ -561,25 +806,47 @@
             
             drawTechBackground();
             
-            // Changing title functionality
+            // Enhanced changing title functionality
             const titles = ["Product Consultant", "Product Research & Development", "Product Innovation"];
-            let index = 0;
-            const titleElement = document.getElementById("changing-title");
+            const titleElements = [
+                document.getElementById("changing-title-1"),
+                document.getElementById("changing-title-2"),
+                document.getElementById("changing-title-3")
+            ];
+            
+            let currentTitleIndex = 0;
+            
+            // Initialize titles
+            titleElements.forEach((el, index) => {
+                el.textContent = titles[index];
+                if (index === 0) el.classList.add('active');
+            });
             
             function changeTitle() {
-                titleElement.textContent = titles[index];
-                index = (index + 1) % titles.length;
+                // Remove active class from current title
+                titleElements[currentTitleIndex].classList.remove('active');
+                
+                // Move to next title
+                currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+                
+                // Add active class to new title
+                setTimeout(() => {
+                    titleElements[currentTitleIndex].classList.add('active');
+                }, 300);
             }
             
-            setInterval(changeTitle, 2000);
+            // Initial call and set interval
+            setInterval(changeTitle, 3000);
             
             // Dark Mode / Day Mode Toggle
             const themeToggleButton = document.getElementById("theme-toggle");
+            const themeIcon = themeToggleButton.querySelector('i');
             
             // Set default theme to dark mode
-            document.body.classList.add("day-mode");
-            document.body.classList.remove("dark-mode");
-            themeToggleButton.textContent = "🌙";
+            document.body.classList.add("dark-mode");
+            document.body.classList.remove("day-mode");
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
             
             // Listen for theme toggle button click
             themeToggleButton.addEventListener("click", function() {
@@ -587,28 +854,50 @@
                 document.body.classList.toggle("day-mode");
                 document.body.classList.toggle("dark-mode");
                 
-                // Save theme preference in localStorage
+                // Update icon
                 if (document.body.classList.contains("dark-mode")) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
                     localStorage.setItem("theme", "dark");
-                    themeToggleButton.textContent = "☀️";
                 } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
                     localStorage.setItem("theme", "light");
-                    themeToggleButton.textContent = "🌙";
                 }
             });
             
             // Chat functionality
-            const chatToggle = document.getElementById("chat-toggle");
-            const chatBody = document.getElementById("chat-body");
+            const chatIcon = document.getElementById("chat-icon");
+            const chatClose = document.getElementById("chat-close");
+            const chatContainer = document.querySelector(".chat-container");
             const chatMessages = document.getElementById("chat-messages");
             const userInput = document.getElementById("user-input");
             const sendBtn = document.getElementById("send-btn");
             const typingIndicator = document.getElementById("typing-indicator");
+            const chatOverlay = document.getElementById("chat-overlay");
             
             // Toggle chat window
-            chatToggle.addEventListener("click", function() {
-                chatBody.parentElement.classList.toggle("chat-open");
+            chatIcon.addEventListener("click", function() {
+                document.body.classList.add("chat-open");
+                chatOverlay.style.display = 'block';
+                userInput.focus();
             });
+            
+            chatClose.addEventListener("click", function() {
+                closeChat();
+            });
+            
+            // Close chat when clicking outside on mobile
+            chatOverlay.addEventListener("click", function() {
+                if (window.innerWidth <= 768) {
+                    closeChat();
+                }
+            });
+            
+            function closeChat() {
+                document.body.classList.remove("chat-open");
+                chatOverlay.style.display = 'none';
+            }
             
             // Send message function
             function sendMessage() {
@@ -620,7 +909,7 @@
                 userInput.value = "";
                 
                 // Show typing indicator
-                typingIndicator.style.display = "block";
+                typingIndicator.style.display = "flex";
                 chatMessages.scrollTop = chatMessages.scrollHeight;
                 
                 // Process and respond
@@ -678,14 +967,6 @@
                     return "I'm not sure how to answer that. Try asking about Anmol's experience, skills, projects, education, or how to contact him.";
                 }
             }
-            
-            // Customization questions for Anmol
-            console.log("To further customize your chat bot, please provide answers to these questions:");
-            console.log("1. What specific companies have you worked at?");
-            console.log("2. What are your most notable achievements or projects?");
-            console.log("3. Do you have any specific certifications or specializations?");
-            console.log("4. What technologies or tools are you most proficient with?");
-            console.log("5. Are there any specific services you offer (consulting, mentoring, etc.)?");
         });
     </script>
 </body>
