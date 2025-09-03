@@ -61,7 +61,7 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            margin: 20px 0;
+            margin: 20px auto;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -369,6 +369,7 @@
             padding: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(30, 30, 40, 0.8);
+            align-items: center;
         }
 
         body.day-mode .chat-input {
@@ -386,6 +387,7 @@
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             font-size: 15px;
+            min-width: 0; /* Fix for flexbox overflow */
         }
 
         body.day-mode .chat-input input {
@@ -413,6 +415,7 @@
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
 
         body.day-mode .chat-input button {
@@ -515,11 +518,32 @@
         }
 
         /* Media Queries for Responsiveness */
+        @media only screen and (max-width: 1024px) {
+            /* Tablet specific styles */
+            .container {
+                max-width: 85%;
+                padding: 35px 25px;
+            }
+            
+            h1 {
+                font-size: 38px;
+            }
+            
+            .changing-title {
+                font-size: 24px;
+            }
+            
+            p {
+                font-size: 17px;
+            }
+        }
+
         @media only screen and (max-width: 768px) {
             .container {
                 padding: 30px 20px;
                 max-width: 90%;
                 border-radius: 15px;
+                margin: 15px auto;
             }
 
             .profile-img {
@@ -554,6 +578,8 @@
                 right: 5%;
                 bottom: 100px;
                 height: 400px;
+                left: 5%;
+                margin: 0 auto;
             }
             
             .chat-icon {
@@ -574,6 +600,20 @@
                 top: 20px;
                 right: 20px;
             }
+            
+            .chat-input {
+                padding: 12px;
+            }
+            
+            .chat-input input {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .chat-input button {
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media only screen and (max-width: 480px) {
@@ -585,6 +625,7 @@
                 padding: 25px 15px;
                 max-width: 100%;
                 border-radius: 12px;
+                margin: 10px auto;
             }
 
             .profile-img {
@@ -632,12 +673,46 @@
                 font-size: 22px;
             }
             
+            .chat-container {
+                height: 380px;
+                bottom: 90px;
+            }
+            
+            .chat-header {
+                padding: 15px;
+            }
+            
+            .chat-messages {
+                padding: 15px;
+            }
+            
+            .message {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+            
             .theme-toggle-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 18px;
                 top: 15px;
                 right: 15px;
+            }
+            
+            .chat-input {
+                padding: 10px;
+            }
+            
+            .chat-input input {
+                padding: 8px 14px;
+                font-size: 14px;
+                margin-right: 8px;
+            }
+            
+            .chat-input button {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
             }
         }
     </style>
@@ -883,6 +958,11 @@
                 document.body.classList.add("chat-open");
                 chatOverlay.style.display = 'block';
                 userInput.focus();
+                
+                // Prevent body scrolling when chat is open on mobile
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = 'hidden';
+                }
             });
             
             chatClose.addEventListener("click", function() {
@@ -899,6 +979,9 @@
             function closeChat() {
                 document.body.classList.remove("chat-open");
                 chatOverlay.style.display = 'none';
+                
+                // Re-enable body scrolling
+                document.body.style.overflow = '';
             }
             
             // Send message function
@@ -962,7 +1045,7 @@
                 } else if (lowerMsg.includes("hello") || lowerMsg.includes("hi") || lowerMsg.includes("hey")) {
                     return "Hello! I can tell you about Anmol Chalise. Try asking about his experience, skills, or how to contact him.";
                 } else if (lowerMsg.includes("project") || lowerMsg.includes("portfolio")) {
-                    return "Anmol has worked on numerous projects across different industries. Some notable ones include enterprise SaaS platforms, e-commerce solutions, and government digital transformation initiatives. Would you like to know about any specific type of project?";
+                    return "Anmol has worked on numerous projects across different industries. Some notable ones include e-learning platforms, e-commerce solutions, and government digital transformation initiatives. Would you like to know about any specific type of project?";
                 } else if (lowerMsg.includes("education") || lowerMsg.includes("degree") || lowerMsg.includes("study")) {
                     return "Anmol holds a degree in Computer Science and Information Technology. He has continuously updated his skills through various certifications and professional development courses in product management and emerging technologies.";
                 } else {
