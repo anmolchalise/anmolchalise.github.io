@@ -414,7 +414,7 @@
     <div class="container">
         <img src="image/anm.jpeg" alt="Anmol Chalise">
         <h1>Anmol Chalise</h1>
-        <span id="changing-title" class="changing-title">Product Head</span>
+        <span id="changing-title" class="changing-title">Product Head </span>
         <p>With over a decade of experience in Computer Science and Information Technology, I am a seasoned Product Head who combines technical expertise with strong leadership to drive innovation across B2B, B2C, and B2G markets. Passionate about optimizing processes and delivering scalable solutions.</p>
         <div class="social-links">
             <a href="https://www.facebook.com/anmolchalise" target="_blank" class="facebook" title="Facebook">
