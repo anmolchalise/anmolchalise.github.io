@@ -659,7 +659,7 @@
                 const lowerMsg = message.toLowerCase();
                 
                 if (lowerMsg.includes("name") || lowerMsg.includes("who are you")) {
-                    return "Anmol Chalise is a Product Consultant with over a decade of experience in Computer Science and Information Technology.";
+                    return "Anmol Chalise is a Product Head with over a decade of experience in Computer Science and Information Technology.";
                 } else if (lowerMsg.includes("work") || lowerMsg.includes("where do you work")) {
                     return "Anmol Chalise currently works at Innovate Tech Pvt. Ltd., where he applies his extensive experience across B2B, B2C, and B2G markets. He combines deep technical expertise with strong leadership to drive innovation and has a proven track record of delivering both local and international projects.";
                 } else if (lowerMsg.includes("skill") || lowerMsg.includes("what can you do") || lowerMsg.includes("expert")) {
