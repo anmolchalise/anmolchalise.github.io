@@ -562,7 +562,7 @@
             drawTechBackground();
             
             // Changing title functionality
-            const titles = ["Product Consultant", "Product Research & Development", "Product Innovation"];
+            const titles = ["Product Head", "Product Research & Development", "Product Innovation"];
             let index = 0;
             const titleElement = document.getElementById("changing-title");
             
